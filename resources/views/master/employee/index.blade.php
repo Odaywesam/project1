@@ -36,6 +36,7 @@
                   <th>  mobile  </th>
                   <th>  age </th>
                   <th>  image </th>
+                  <th>  cv </th>
                   <th> Setting </th>
                 </tr>
               </thead>
@@ -48,11 +49,13 @@
                     <img class="img-circle img-bordered-sm" src="{{asset('images/city_who/'.$city->image_who)}}" width="60" height="60" alt="User Image">
                   </td> --}}
                   <td>{{$employee->first_name }}</td>
-                  <td>{{$employeelast_name }}</td>
+                  <td>{{$employee->last_name }}</td>
                   <td>{{$employee->email}}</td>
                   <td>{{$employee->mobile}}</td>
                   <td>{{$employee->age}}</td>
                   <td>{{$employee->image}}</td>
+                  <td>{{$employee->cv}}</td>
+
                   <td>
                     <div class="btn-group">
                       <a href="{{route('employees.edit',$employee->id)}}" class="btn btn-info" title="Edit">

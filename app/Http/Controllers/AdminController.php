@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -53,6 +53,7 @@ class AdminController extends Controller
             $admins->mobile = $request->get('mobile');
             $admins->age = $request->get('age');
             $admins->email = $request->get('email');
+            $admins->city_id = $request->get('city_id');
             $admins->password = Hash::make($request->get('password'));
 
 
@@ -130,29 +131,56 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator($request->all(),[
-
+          
         ]);
 
         if(!$validator->fails()){
             $admins = Admin::findOrFail($id);
-            $admins->email=$request->get('email');
-            $admins->password= Hash::make($request->get('password'));
-            $admins->city_id=$request->get('city_id');
+
             $admins->first_name = $request->get('first_name');
             $admins->last_name = $request->get('last_name');
             $admins->mobile = $request->get('mobile');
             $admins->age = $request->get('age');
+            $admins->email = $request->get('email');
+            $admins->city_id = $request->get('city_id');
+            $admins->password = Hash::make($request->get('password'));
 
+            if (request()->hasFile('image')) {
+
+                $image = $request->file('image');
+    
+                $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+    
+                $image->move('storage/images/admin', $imageName);
+    
+                $admins->image = $imageName;
+    
+                }
+    
+                if (request()->hasFile('cv')) {
+    
+                $cv = $request->file('cv');
+    
+                $fileName = time() . 'cv.' . $cv->getClientOriginalExtension();
+    
+                $cv->move('storage/files/admin', $fileName);
+    
+                $admins->cv = $fileName;
+                }
 
             $isUpdate = $admins->save();
+            return['redirect' =>route('admins.index')];
             if($isUpdate){
-            return response()->json(['icon' => 'success' , 'title' => 'created successflly'] , 200);
+                return response()->json(['icon' => 'success' , 'title' => 'Update successflly'] ,200);
+            }
+            else{
+                return response()->json(['icon' => 'error' , 'title' => 'Update failed'] ,400);
 
             }
-             else{
-                    return response()->json(['icon' => 'error' ,'title' => $validator->getMessageBag()->first(),400]);
-                }
-    }
+        }
+         else{
+                return response()->json(['icon' => 'error' ,'title' => $validator->getMessageBag()->first(),400]);
+            }
     }
 
     /**
@@ -163,8 +191,8 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        $damins = Admin::destroy($id);
-        return response()->json(['icon' => 'success' , 'title' => 'deleted successflly'] ,$damins? 200 :400);
+        $admins = Admin::destroy($id);
+        return response()->json(['icon' => 'success' , 'title' => 'deleted successflly'] ,$admins? 200 :400);
 
     }
 }

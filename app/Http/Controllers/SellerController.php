@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Validator;
 
 use App\Models\City;
 use App\Models\Seller;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class SellerController extends Controller
@@ -30,7 +30,7 @@ class SellerController extends Controller
     {
         $cities = City::all();
 
-        return respnose()->view('master.seller.create', compact('cities'));
+        return response()->view('master.seller.create' , compact('cities'));
     }
 
     /**
@@ -42,15 +42,18 @@ class SellerController extends Controller
     public function store(Request $request)
     {
         $validator = Validator($request->all(),[
+            // 'image'=>"image|max:2048|mimes:png,jpg,jpeg,pdf",
 
         ]);
-        if(!$validator->fails()){
+
+        if(! $validator->fails()){
             $sellers = new Seller();
             $sellers->first_name = $request->get('first_name');
             $sellers->last_name = $request->get('last_name');
+            $sellers->email = $request->get('email');
             $sellers->mobile = $request->get('mobile');
             $sellers->age = $request->get('age');
-            $sellers->email = $request->get('email');
+            $sellers->city_id=$request->get('city_id');
             $sellers->password = Hash::make($request->get('password'));
 
 
@@ -60,7 +63,7 @@ class SellerController extends Controller
 
             $imageName = time() . 'image.' . $image->getClientOriginalExtension();
 
-            $image->move('storage/images/Seller', $imageName);
+            $image->move('storage/images/seller', $imageName);
 
             $sellers->image = $imageName;
 
@@ -72,7 +75,7 @@ class SellerController extends Controller
 
             $fileName = time() . 'cv.' . $cv->getClientOriginalExtension();
 
-            $cv->move('storage/files/Seller', $fileName);
+            $cv->move('storage/files/seller', $fileName);
 
             $sellers->cv = $fileName;
             }
@@ -136,6 +139,7 @@ class SellerController extends Controller
             $sellers->mobile = $request->get('mobile');
             $sellers->age = $request->get('age');
             $sellers->email = $request->get('email');
+            $sellers->city_id=$request->get('city_id');
             $sellers->password = Hash::make($request->get('password'));
 
 

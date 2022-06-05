@@ -1,5 +1,5 @@
 @extends('master.parent')
-@section('title','Admain ')
+@section('title','Product ')
 @section('sub-title','index ')
 
 
@@ -17,9 +17,9 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Admain</h3>
+            <h3 class="card-title">Product</h3>
             <div class="card-tools">
-                <a href="{{route('admins.create')}}"><button type="button" class="btn btn-lg btn-primary">create admin </button></a>
+                <a href="{{route('products.create')}}"><button type="button" class="btn btn-lg btn-primary"> create Product </button></a>
               </div>
               <br>
             </div>
@@ -29,38 +29,37 @@
             <table class="table table-hover table-bordered table-striped text-nowrap text-center">
               <thead>
                 <tr class="bg-info">
-                  <th> Admain nimber  </th>
-                  <th>  first name  </th>
-                  <th>  last name </th>
-                  <th>  email  </th>
+                  <th> Products number  </th>
+                  <th>   name  </th>
+                  <th>   type </th>
                   <th>  mobile  </th>
-                  <th>  age </th>
+                  <th>  price  </th>
+                  <th>  discription </th>
                   <th>  image </th>
-
                   <th> Setting </th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($admins as $admin )
+                @foreach ($Products as $Product )
                 <tr>
-                  <td>{{$admin->id}}</td>
+                  <td>{{$Product->id}}</td>
                   {{-- <td>{{$city->who}}</td> --}}
                   {{-- <td>
                     <img class="img-circle img-bordered-sm" src="{{asset('images/city_who/'.$city->image_who)}}" width="60" height="60" alt="User Image">
                   </td> --}}
-                  <td>{{$admin->first_name }}</td>
-                  <td>{{$admin->last_name }}</td>
-                  <td>{{$admin->email}}</td>
-                  <td>{{$admin->mobile}}</td>
-                  <td>{{$admin->age}}</td>
-                  <td>{{$admin->image}}</td>
+                  <td>{{$Product->name }}</td>
+                  <td>{{$Product->type }}</td>
+                  <td>{{$Product->mobile}}</td>
+                  <td>{{$Product->price }}</td>
+                  <td>{{$Product->discription}}</td>
+                  <td>{{$Product->image}}</td>
                   <td>
                     <div class="btn-group">
-                      <a href="{{route('admins.edit',$admin->id)}}" class="btn btn-info" title="Edit">
+                      <a href="{{route('products.edit',$Product->id)}}" class="btn btn-info" title="Edit">
                         Edit
                         </a>
 
-                      <a href="#" onclick="performDestroy({{$admin->id}}, this)" class="btn btn-danger" title="Delete">
+                      <a href="#" onclick="performDestroy({{$Product->id}}, this)" class="btn btn-danger" title="Delete">
                         Delete
                       </a>
                     </div>
@@ -70,7 +69,7 @@
               </tbody>
             </table>
             <div class="span text-center" style="margin-top: 20px; margin-bottom:10px">
-            {{ $admins->links() }}
+            {{ $Products->links() }}
 
 
           </div>
@@ -89,7 +88,7 @@
 
  <script>
   function performDestroy(id, reference){
-    let url = '/master/admin/admins/'+id;
+    let url = '/master/admin/products/'+id;
     confirmDestroy(url, reference);
   }
  </script>

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
-use App\Models\Employee;
+use App\Models\Seller;
+use App\Models\Product;
+use App\Models\Categore;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Hash;
 
-class EmployeeController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::orderBy('id' , 'desc')->paginate(5);
-        return response()->view('master.employee.index', compact('employees'));
+        $products = Product::orderBy('id' , 'desc')->paginate(5);
+        return response()->view('master.product.index', compact('Products'));
     }
 
     /**
@@ -28,9 +28,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $cities = City::all();
-
-        return response()->view('master.employee.create' , compact('cities'));
+        $categores = Categore::all();
+        $sellers = Seller::all();
+        return response()->view('master.product.create' , compact('categores' , 'sellers'));
     }
 
     /**
@@ -42,19 +42,19 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $validator = Validator($request->all(),[
-            // 'image'=>"image|max:2048|mimes:png,jpg,jpeg,pdf",
-
+`            // 'image'=>"image|max:2048|mimes:png,jpg,jpeg,pdf",
+`
         ]);
 
         if(! $validator->fails()){
-            $employees = new Employee();
-            $employees->first_name = $request->get('first_name');
-            $employees->last_name = $request->get('last_name');
-            $employees->mobile = $request->get('mobile');
-            $employees->age = $request->get('age');
-            $employees->email = $request->get('email');
-            $employees->city_id=$request->get('city_id');
-            $employees->password = Hash::make($request->get('password'));
+            $products = new Product();
+            $products->name = $request->get('name');
+            $products->type = $request->get('type');
+            $products->mobile = $request->get('mobile');
+            $products->price = $request->get('price');
+            $products->categore_id=$request->get('categore_id');
+            $products->seller_id=$request->get('seller_id');
+            $products->discription = $request->get('discription');
 
 
             if (request()->hasFile('image')) {
@@ -63,24 +63,13 @@ class EmployeeController extends Controller
 
             $imageName = time() . 'image.' . $image->getClientOriginalExtension();
 
-            $image->move('storage/images/employee', $imageName);
+            $image->move('storage/images/product', $imageName);
 
-            $employees->image = $imageName;
+            $products->image = $imageName;
 
             }
 
-            if (request()->hasFile('cv')) {
-
-            $cv = $request->file('cv');
-
-            $fileName = time() . 'cv.' . $cv->getClientOriginalExtension();
-
-            $cv->move('storage/files/employee', $fileName);
-
-            $employees->cv = $fileName;
-            }
-
-            $isSaved = $employees->save();
+            $isSaved = $products->save();
 
             if($isSaved){
             return response()->json(['icon' => 'success' , 'title' => 'created successfully'] , 200);
@@ -115,9 +104,10 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $cities = City::all();
-        $employees = Employee::findOrFail($id);
-        return response()->view('master.employee.edite' , compact('employees' , 'cities'));
+        $categores = categore::all();
+        $sellers = seller::all();
+        $products = Product::findOrFail($id);
+        return response()->view('master.product.edite' , compact('categores' , 'sellers'));
     }
 
     /**
@@ -134,23 +124,24 @@ class EmployeeController extends Controller
         ]);
 
         if(!$validator->fails()){
-            $employees = Employee::findOrFail($id);
-            $employees->email=$request->get('email');
-            $employees->password= Hash::make($request->get('password'));
-            $employees->city_id=$request->get('city_id');
-            $employees->first_name = $request->get('first_name');
-            $employees->last_name = $request->get('last_name');
-            $employees->mobile = $request->get('mobile');
-            $employees->city_id=$request->get('city_id');
-            $employees->age = $request->get('age');
+            $products = Product::findOrFail($id);
+            $products->name = $request->get('name');
+            $products->type = $request->get('type');
+            $products->mobile = $request->get('mobile');
+            $products->price = $request->get('price');
+            $products->categore_id=$request->get('categore_id');
+            $products->seller_id=$request->get('seller_id');
+            $products->discription = $request->get('discription');
+            
 
 
-            $isUpdate = $employees->save();
+            $isUpdate = $products->save();
             if($isUpdate){
             return response()->json(['icon' => 'success' , 'title' => 'created successflly'] , 200);
 
             }
-             else{
+
+            else{
                     return response()->json(['icon' => 'error' ,'title' => $validator->getMessageBag()->first(),400]);
                 }
     }
@@ -164,8 +155,7 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        $employees = Employee::destroy($id);
-        return response()->json(['icon' => 'success' , 'title' => 'deleted successflly'] ,$employees? 200 : 400);
-
+        $products = Product::destroy($id);
+        return response()->json(['icon' => 'success' , 'title' => 'deleted successflly'] ,$products? 200 :400);
     }
 }

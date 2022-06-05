@@ -57,6 +57,11 @@
                                 <input type="text" name="mobile" class="form-control" id="mobile"
                                 value="{{ $admins->mobile}}"   placeholder="enter your password">
                             </div>
+                            <div class="form-group col-md-4">
+                                <label for="age"> age</label>
+                                <input type="text" name="age" class="form-control" id="age"
+                                value="{{ $admins->age}}"   placeholder="enter  age">
+                            </div>
 
                             <div class="form-group col-md-4">
                                 <label for="city_id"> city </label>
@@ -86,8 +91,8 @@
 
                       <!-- /.card-body -->
                       <div class="card-footer">
-                          <button type="button" onclick="performStore()" class="btn btn-lg btn-success">SAVE</button>
-                         <a href="{{route('admins.index')}}"><button type="button" class="btn btn-lg btn-primary">  index admins </button></a>
+                        <button type="button" onclick="performUpdate({{$admins->id}})" class="btn btn-lg btn-success">Update</button>
+                        <a href="{{route('admins.index')}}"><button type="button" class="btn btn-lg btn-primary">  admin index </button></a>
                       </div>
 
               </div>
@@ -110,12 +115,13 @@
 
  <script>
 
-     function performStore() {
+     function performUpdate(id) {
         let formData = new FormData();
             formData.append('first_name',document.getElementById('first_name').value);
             formData.append('last_name',document.getElementById('last_name').value);
             formData.append('email',document.getElementById('email').value);
             formData.append('mobile',document.getElementById('mobile').value);
+            formData.append('age',document.getElementById('age').value);
             formData.append('cv',document.getElementById('cv').files[0]);
             formData.append('password',document.getElementById('password').value);
             formData.append('image',document.getElementById('image').files[0]);

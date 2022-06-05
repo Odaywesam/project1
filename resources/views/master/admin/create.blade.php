@@ -73,13 +73,13 @@
                                 </select>
                             </div>
 
-                             <div class="form-group col-md-4">
+                             <div class="form-group col-md-6">
                                 <label for="image">  your image</label>
                                 <input type="file" name="image" class="form-control" id="image"
                                     placeholder="  enter image">
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="cv"> cv</label>
                                 <input type="file" name="cv" class="form-control" id="cv"
                                     placeholder="enter your cv">

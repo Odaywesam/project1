@@ -117,18 +117,18 @@
 
  <script>
 
-     function performStore() {
+function performStore() {
         let formData = new FormData();
             formData.append('first_name',document.getElementById('first_name').value);
             formData.append('last_name',document.getElementById('last_name').value);
             formData.append('email',document.getElementById('email').value);
             formData.append('mobile',document.getElementById('mobile').value);
+            formData.append('age',document.getElementById('age').value);
             formData.append('cv',document.getElementById('cv').files[0]);
             formData.append('password',document.getElementById('password').value);
             formData.append('image',document.getElementById('image').files[0]);
             formData.append('city_id',document.getElementById('city_id').value);
-        store('/master/admin/merchants/',formData);
-
+        store('/master/admin/merchants',formData);
     }
 
 </script>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SellerController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoreController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MerchantController;
@@ -35,7 +36,7 @@ Route::prefix('master/admin')->middleware('auth:admin')->group(function(){
     Route::get('/logout' , [UserAuthController::class , 'Logout'])->name('master.admin.logout');
 });
 
-Route::prefix('master/admin/')->middleware('auth:admin,merchant,seller')->group(function(){
+Route::prefix('master/admin/')->group(function(){
     Route::view('parent' , 'master.parent');
     Route::resource('cities', CityController::class);
     Route::post('update_cities/{id}',[CityController::class ,'update'])->name('update_cities');
@@ -49,8 +50,8 @@ Route::prefix('master/admin/')->middleware('auth:admin,merchant,seller')->group(
     Route::post('update_merchants/{id}',[MerchantController::class ,'update'])->name('update_merchants');
     Route::resource('sellers', SellerController::class);
     Route::post('update_sellers/{id}',[SellerController::class ,'update'])->name('update_sellers');
-
-   // Route::resource('products', ProductController::class);
+    Route::resource('products', ProductController::class);
+    Route::post('update_products/{id}',[ProductController::class ,'update'])->name('update_products');
 
 
 });

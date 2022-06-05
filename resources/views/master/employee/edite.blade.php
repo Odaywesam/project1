@@ -58,6 +58,12 @@
                                 value="{{ $employees->mobile}}"   placeholder="enter your password">
                             </div>
 
+                            <div class="form-group col-md-4">
+                                <label for="age"> age</label>
+                                <input type="text" name="age" class="form-control" id="age"
+                                value="{{ $employees->age}}"   placeholder="enter age ">
+                            </div>
+
 
                             <div class="form-group col-md-4">
                                 <label for="city_id"> city name</label>
@@ -122,6 +128,7 @@
             formData.append('last_name',document.getElementById('last_name').value);
             formData.append('email',document.getElementById('email').value);
             formData.append('mobile',document.getElementById('mobile').value);
+            formData.append('age',document.getElementById('age').value);
             formData.append('cv',document.getElementById('cv').files[0]);
             formData.append('password',document.getElementById('password').value);
             formData.append('image',document.getElementById('image').files[0]);

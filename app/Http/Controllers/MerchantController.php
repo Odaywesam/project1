@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Validator;
 
 use App\Models\City;
 use App\Models\Merchant;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class MerchantController extends Controller
@@ -48,12 +48,13 @@ class MerchantController extends Controller
         ]);
 
         if(! $validator->fails()){
-            $merchants = new Admin();
+            $merchants = new Merchant();
             $merchants->first_name = $request->get('first_name');
             $merchants->last_name = $request->get('last_name');
             $merchants->mobile = $request->get('mobile');
             $merchants->age = $request->get('age');
             $merchants->email = $request->get('email');
+            $merchants->city_id=$request->get('city_id');
             $merchants->password = Hash::make($request->get('password'));
 
 
@@ -141,6 +142,7 @@ class MerchantController extends Controller
             $merchants->first_name = $request->get('first_name');
             $merchants->last_name = $request->get('last_name');
             $merchants->mobile = $request->get('mobile');
+            $merchants->city_id=$request->get('city_id');
             $merchants->age = $request->get('age');
 
 

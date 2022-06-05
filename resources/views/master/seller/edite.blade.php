@@ -31,31 +31,37 @@
                             <div class="form-group col-md-4">
                                 <label for="first_name"> first name</label>
                                 <input type="text" name="first_name" class="form-control" id="first_name"
-                                    value="{{ $merchants->first_name}}" placeholder=" Enter  name ">
+                                    value="{{ $sellers->first_name}}" placeholder=" Enter  name ">
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label for="last_name">  last name</label>
                                 <input type="text" name="last_name" class="form-control" id="last_name"
-                                value="{{ $merchants->last_name}}" placeholder="enter Street name">
+                                value="{{ $sellers->last_name}}" placeholder="enter Street name">
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label for="email"> email</label>
                                 <input type="text" name="email" class="form-control" id="email"
-                                value="{{ $merchants->email}}"   placeholder="enter your email">
+                                value="{{ $sellers->email}}"   placeholder="enter your email">
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label for="password"> password</label>
                                 <input type="text" name="password" class="form-control" id="password"
-                                value="{{ $merchants->password}}"  placeholder="enter your password">
+                                value="{{ $sellers->password}}"  placeholder="enter your password">
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label for="mobile"> mobile</label>
                                 <input type="text" name="mobile" class="form-control" id="mobile"
-                                value="{{ $merchants->mobile}}"   placeholder="enter your password">
+                                value="{{ $sellers->mobile}}"   placeholder="enter your password">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="age"> age</label>
+                                <input type="text" name="age" class="form-control" id="age"
+                                value="{{ $sellers->age}}"   placeholder="enter age">
                             </div>
 
                             <div class="form-group col-md-4">
@@ -70,13 +76,13 @@
                              <div class="form-group col-md-6">
                                 <label for="image">  your image</label>
                                 <input type="file" name="image" class="form-control" id="image"
-                                value="{{ $merchants->image}}}"   placeholder="  enter image">
+                                value="{{ $sellers->image}}}"   placeholder="  enter image">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="cv"> cv</label>
                                 <input type="file" name="cv" class="form-control" id="cv"
-                                value="{{ $merchants->cv}}}"  placeholder="enter your cv">
+                                value="{{ $sellers->cv}}}"  placeholder="enter your cv">
                             </div>
 
 
@@ -86,8 +92,8 @@
 
                       <!-- /.card-body -->
                       <div class="card-footer">
-                          <button type="button" onclick="performStore()" class="btn btn-lg btn-success">SAVE</button>
-                         <a href="{{route('merchants.index')}}"><button type="button" class="btn btn-lg btn-primary">  index merchants </button></a>
+                          <button type="button" onclick="performUpdate({{$sellers->id}})" class="btn btn-lg btn-success">SAVE</button>
+                         <a href="{{route('sellers.index')}}"><button type="button" class="btn btn-lg btn-primary">  index seller </button></a>
                       </div>
 
               </div>
@@ -113,12 +119,13 @@
          them:'bootstrap4'
      })
 
-     function performStore() {
+     function performUpdate(id) {
         let formData = new FormData();
             formData.append('first_name',document.getElementById('first_name').value);
             formData.append('last_name',document.getElementById('last_name').value);
             formData.append('email',document.getElementById('email').value);
             formData.append('mobile',document.getElementById('mobile').value);
+            formData.append('age',document.getElementById('age').value);
             formData.append('cv',document.getElementById('cv').files[0]);
             formData.append('password',document.getElementById('password').value);
             formData.append('image',document.getElementById('image').files[0]);
