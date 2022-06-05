@@ -94,9 +94,9 @@
 
                       <!-- /.card-body -->
                       <div class="card-footer">
-                          <button type="button" onclick="performStore()" class="btn btn-lg btn-success">SAVE</button>
-                         <a href="{{route('merchants.index')}}"><button type="button" class="btn btn-lg btn-primary">  index merchants </button></a>
-                      </div>
+                        <button type="button" onclick="performUpdate({{$merchants->id}})" class="btn btn-lg btn-success">Update</button>
+                       <a href="{{route('merchants.index')}}"><button type="button" class="btn btn-lg btn-primary">  merchants index </button></a>
+                    </div>
 
               </div>
               <!-- /.card -->
@@ -121,7 +121,7 @@
          them:'bootstrap4'
      })
 
-     function performStore() {
+     function performUpdate(id) {
         let formData = new FormData();
             formData.append('first_name',document.getElementById('first_name').value);
             formData.append('last_name',document.getElementById('last_name').value);

@@ -91,9 +91,9 @@
 
                       <!-- /.card-body -->
                       <div class="card-footer">
-                        <button type="button" onclick="performUpdate({{$admins->id}})" class="btn btn-lg btn-success">Update</button>
-                        <a href="{{route('admins.index')}}"><button type="button" class="btn btn-lg btn-primary">  admin index </button></a>
-                      </div>
+                        <button type="button" onclick="performUpdate({{$admins->id}})" class="btn btn-lg btn-success">UPDATE</button>
+                       <a href="{{route('admins.index')}}"><button type="button" class="btn btn-lg btn-primary">  index admins </button></a>
+                    </div>
 
               </div>
               <!-- /.card -->

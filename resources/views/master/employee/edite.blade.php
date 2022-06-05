@@ -95,7 +95,7 @@
 
                       <!-- /.card-body -->
                       <div class="card-footer">
-                          <button type="button" onclick="performStore({{$employees->id}})" class="btn btn-lg btn-success">UPDATE</button>
+                          <button type="button" onclick="performUpdate({{$employees->id}})" class="btn btn-lg btn-success">UPDATE</button>
                          <a href="{{route('employees.index')}}"><button type="button" class="btn btn-lg btn-primary">  index employees </button></a>
                       </div>
 
@@ -122,7 +122,7 @@
          them:'bootstrap4'
      })
 
-     function performStore(id) {
+     function performUpdate(id) {
         let formData = new FormData();
             formData.append('first_name',document.getElementById('first_name').value);
             formData.append('last_name',document.getElementById('last_name').value);

@@ -169,7 +169,6 @@ class AdminController extends Controller
                 }
 
             $isUpdate = $admins->save();
-            return['redirect' =>route('admins.index')];
             if($isUpdate){
                 return response()->json(['icon' => 'success' , 'title' => 'Update successflly'] ,200);
             }
