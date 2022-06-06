@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::orderBy('id' , 'desc')->paginate(5);
-        return response()->view('master.product.index', compact('Products'));
+        return response()->view('master.product.index', compact('products'));
     }
 
     /**
@@ -42,8 +42,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validator = Validator($request->all(),[
-`            // 'image'=>"image|max:2048|mimes:png,jpg,jpeg,pdf",
-`
+       // 'image'=>"image|max:2048|mimes:png,jpg,jpeg,pdf",
         ]);
 
         if(! $validator->fails()){
@@ -107,7 +106,7 @@ class ProductController extends Controller
         $categores = categore::all();
         $sellers = seller::all();
         $products = Product::findOrFail($id);
-        return response()->view('master.product.edite' , compact('categores' , 'sellers'));
+        return response()->view('master.product.edite' , compact('categores' , 'sellers','products'));
     }
 
     /**
@@ -132,7 +131,7 @@ class ProductController extends Controller
             $products->categore_id=$request->get('categore_id');
             $products->seller_id=$request->get('seller_id');
             $products->discription = $request->get('discription');
-            
+
 
 
             $isUpdate = $products->save();

@@ -12,18 +12,21 @@ class UserAuthController extends Controller
         return response()->view('master.auth.login' , compact('guard'));
 
     }
+
+
     public function Login(Request $request){
         $validate = Validator($request->all(),[
-            'email'=>'required|email|string',
+            'email'=>'required|unique|email|string',
             'password'=>'required|string|min:6|max:16'
         ]);
+
 
         $credentials = [
             'email' => $request->get('email'),
             'password' => $request->get('password'),
         ];
-        if (!$validator->fails()) {
-            if (Auth::guard($request->get('guard'))->attempt($credentials, $request->get('remember_me'))) {
+        if (! $validator->fails()) {
+            if (Auth::guard($request->get('guard'))->attempt($credentials, $request->get('remember'))) {
                 return response()->json(['icon' => 'success', 'title' => 'Login successflly'], 200);
             } else {
                 return response()->json(['icon' => 'error', 'title' => 'Login failed '], 400);

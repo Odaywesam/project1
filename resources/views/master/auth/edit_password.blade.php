@@ -1,6 +1,6 @@
 @extends('dashboard.parent')
 
-@section('title',' تغيير كلمة المرور')
+@section('title',' Change Password')
 
 @section('styles')
 
@@ -17,7 +17,7 @@
               <!-- general form elements -->
               <div class="card card-primary">
                   <div class="card-header">
-                      <h3 class="card-title">تغيير كلمة المرور</h3>
+                      <h3 class="card-title">change password</h3>
                   </div>
                   <!-- /.card-header -->
                   <!-- form start -->
@@ -30,25 +30,25 @@
 
 
                             <div class="form-group col-md-6">
-                                <label for="current_password"> أدخل كلمة المرور الحالية</label>
+                                <label for="current_password">Enter the current password</label>
                                 <input type="password"  class="form-control" id="current_password"
-                                    placeholder="أدخل كلمة المرور الحالية ">
+                                    placeholder="Enter the currunt password ">
                             </div>
-                        
+
                            <div class="form-group col-md-6">
                         </div>
 
                             <div class="form-group col-md-6">
-                                <label for="new_password"> أدخل كلمة المرور الجديدة</label>
+                                <label for="new_password"> enter new password</label>
                                 <input type="password"  class="form-control" id="new_password"
-                                    placeholder="أدخل كلمة المرور الجديدة">
+                                    placeholder=" enter new password">
                             </div>
                             <div class="form-group col-md-6">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="new_password_confirmation"> تأكيد كلمة المرور</label>
+                                <label for="new_password_confirmation"> confirem password</label>
                                 <input type="password" class="form-control" id="new_password_confirmation"
-                                    placeholder="تأكيد كلمة المرور الجديدة  ">
+                                    placeholder="confirem password ">
                             </div>
                             <div class="form-group col-md-6">
                             </div>

@@ -131,7 +131,7 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator($request->all(),[
-          
+
         ]);
 
         if(!$validator->fails()){
@@ -143,28 +143,28 @@ class AdminController extends Controller
             $admins->age = $request->get('age');
             $admins->email = $request->get('email');
             $admins->city_id = $request->get('city_id');
-            $admins->password = Hash::make($request->get('password'));
+           // $admins->password = Hash::make($request->get('password'));
 
             if (request()->hasFile('image')) {
 
                 $image = $request->file('image');
-    
+
                 $imageName = time() . 'image.' . $image->getClientOriginalExtension();
-    
+
                 $image->move('storage/images/admin', $imageName);
-    
+
                 $admins->image = $imageName;
-    
+
                 }
-    
+
                 if (request()->hasFile('cv')) {
-    
+
                 $cv = $request->file('cv');
-    
+
                 $fileName = time() . 'cv.' . $cv->getClientOriginalExtension();
-    
+
                 $cv->move('storage/files/admin', $fileName);
-    
+
                 $admins->cv = $fileName;
                 }
 

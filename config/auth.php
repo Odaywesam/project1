@@ -2,7 +2,9 @@
 
 use App\Models\Admin;
 use App\Models\Seller;
+use App\Models\Employee;
 use App\Models\Merchant;
+use Illuminate\Foundation\Auth\User;
 
 return [
 
@@ -50,6 +52,11 @@ return [
             'provider' => 'admins',
         ],
 
+        'employee' => [
+            'driver' => 'session',
+            'provider' => 'employees',
+        ],
+
         'seller' => [
             'driver' => 'session',
             'provider' => 'sellers',
@@ -87,6 +94,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Employee::class,
         ],
 
         'sellers' => [

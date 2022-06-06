@@ -45,12 +45,12 @@
                                 <input type="text" name="email" class="form-control" id="email"
                                 value="{{ $admins->email}}"   placeholder="enter your email">
                             </div>
-
+{{--
                             <div class="form-group col-md-4">
                                 <label for="password"> password</label>
                                 <input type="text" name="password" class="form-control" id="password"
                                 value="{{ $admins->password}}"  placeholder="enter your password">
-                            </div>
+                            </div> --}}
 
                             <div class="form-group col-md-4">
                                 <label for="mobile"> mobile</label>
@@ -123,7 +123,7 @@
             formData.append('mobile',document.getElementById('mobile').value);
             formData.append('age',document.getElementById('age').value);
             formData.append('cv',document.getElementById('cv').files[0]);
-            formData.append('password',document.getElementById('password').value);
+           // formData.append('password',document.getElementById('password').value);
             formData.append('image',document.getElementById('image').files[0]);
             formData.append('city_id',document.getElementById('city_id').value);
         store('/master/admin/update_admins/'+id,formData);

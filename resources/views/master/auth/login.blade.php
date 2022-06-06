@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in</title>
+  <title>Buy and sell| Login</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -27,9 +27,8 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">LOGIN</p>
 
-      <form >
         <div class="input-group mb-3">
-          <input  type="email" class="form-control"  placeholder="الايميل" id="email">
+          <input  type="email" class="form-control"  placeholder="email" id="email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -37,7 +36,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="كلمة المرور" id="password">
+          <input type="password" class="form-control" placeholder=" password" id="password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -59,7 +58,7 @@
           </div>
           <!-- /.col -->
         </div>
-      </form>
+
 
       <div class="social-auth-links text-center mb-3">
         {{-- <p>- OR -</p>
@@ -100,15 +99,16 @@
 
 <script>
   function login() {
-    var guard = '{{request('guard')}}';
+    //var guard = '{{request('guard')}}';
+    let guard = '{{request('guard')}}';
     axios.post('/master/'+guard+'/login', {
       email: document.getElementById('email').value,
       password: document.getElementById('password').value,
-      remember_me: document.getElementById('remember').checked,
+      remember: document.getElementById('remember').checked,
       guard: guard
     })
         .then(function (response) {
-        window.location.href = '/master/admin'
+        window.location.href = '/master/admin/'
     })
         .catch(function (error) {
             if (error.response.data.errors !== undefined) {

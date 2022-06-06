@@ -214,6 +214,60 @@
               </li>
 
             </ul>
+
+            <li class="nav-header">
+                Roles permisions
+           </li>
+           <li class="nav-item has-treeview">
+             <a href="#" class="nav-link">
+                 <i class="fas fa-users ml-2"></i>
+               <p>
+                  Roles
+                 <i class="fas fa-angle-left right"></i>
+               </p>
+             </a>
+             <ul class="nav nav-treeview">
+               <li class="nav-item">
+                 <a href="{{ route('roles.index') }}" class="nav-link">
+                     <i class="fas fa-desktop ml-2"></i>
+                   <p>index roles</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="{{route('roles.create') }}" class="nav-link">
+                     <i class="fas fa-plus ml-2"></i>
+                   <p>create new role</p>
+                 </a>
+               </li>
+
+             </ul>
+           </li>
+
+           <li class="nav-item has-treeview">
+             <a href="#" class="nav-link">
+                 <i class="fas fa-users ml-2"></i>
+               <p>
+                permisions
+                 <i class="fas fa-angle-left right"></i>
+               </p>
+             </a>
+             <ul class="nav nav-treeview">
+               <li class="nav-item">
+                 <a href="{{ route('permissions.index') }}" class="nav-link">
+                     <i class="fas fa-desktop ml-2"></i>
+                   <p>  index permision</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="{{route('permissions.create') }}" class="nav-link">
+                     <i class="fas fa-plus ml-2"></i>
+                   <p>create new permision</p>
+                 </a>
+               </li>
+
+             </ul>
+           </li>
+
           </li>
           <li class="nav-header">Human system</li>
 

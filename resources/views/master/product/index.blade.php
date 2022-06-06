@@ -40,7 +40,7 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($Products as $Product )
+                @foreach ($products as $Product )
                 <tr>
                   <td>{{$Product->id}}</td>
                   {{-- <td>{{$city->who}}</td> --}}
@@ -69,7 +69,7 @@
               </tbody>
             </table>
             <div class="span text-center" style="margin-top: 20px; margin-bottom:10px">
-            {{ $Products->links() }}
+            {{ $products->links() }}
 
 
           </div>

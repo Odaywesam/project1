@@ -61,29 +61,28 @@
                                 <label for="image"> image</label>
                                 <input type="file" name="image" class="form-control" id="image"
                                     placeholder="  enter image">
+                            </div>
 
                             <div class="form-group col-md-4">
                                 <label for="categore_id"> categore</label>
-                                <select class="form-select form-select-sm" name="categore_id" style="width: 100%;"
+                                <select class="form-select form-select-sm" name="categore_id" style="width:100%"
                                     id="categore_id" aria-label=".form-select-sm example">
                                     @foreach ($categores as $categore)
                                     <option value="{{ $categore->id }}">{{ $categore->name }}</option>
-                                
+
                                     @endforeach
                                 </select>
                             </div>
-                            
+
                             <div class="form-group col-md-4">
                                 <label for="seller_id"> seller</label>
-                                <select class="form-select form-select-sm" name="seller_id" style="width: 100%;"
+                                <select class="form-select form-select-sm" name="seller_id" style="width:100%"
                                     id="seller_id" aria-label=".form-select-sm example">
                                     @foreach ($sellers as $seller)
                                     <option value="{{ $seller->id }}">{{ $seller->name }}</option>
-                                
+
                                     @endforeach
                                 </select>
-                            </div>
-                             
                             </div>
 
 
@@ -128,7 +127,7 @@ function performStore() {
             formData.append('categore_id',document.getElementById('categore_id').value);
             formData.append('seller_id',document.getElementById('seller_id').value);
 
-        store('/master/admin/products/',formData);
+        store('/master/admin/products',formData);
     }
 
 </script>

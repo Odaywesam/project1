@@ -31,36 +31,36 @@
                             <div class="form-group col-md-4">
                                 <label for="name">name</label>
                                 <input type="text" name="name" class="form-control" id="name"
-                                    value="{{ $Products->name}}" placeholder=" Enter  name ">
+                                    value="{{ $products->name}}" placeholder=" Enter  name ">
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label for="type">  type </label>
                                 <input type="text" name="type" class="form-control" id="type"
-                                value="{{ $Products->type}}" placeholder="enter type ">
+                                value="{{ $products->type}}" placeholder="enter type ">
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label for="mobile"> mobile</label>
                                 <input type="text" name="mobile" class="form-control" id="mobile"
-                                value="{{ $Products->mobile}}"   placeholder="enter your password">
+                                value="{{ $products->mobile}}"   placeholder="enter your password">
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label for="price"> price</label>
                                 <input type="text" name="price" class="form-control" id="price"
-                                value="{{ $Products->price}}"  placeholder="enter price ">
+                                value="{{ $products->price}}"  placeholder="enter price ">
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label for="discription"> discription</label>
                                 <input type="text" name="mobile" class="form-control" id="discription"
-                                value="{{ $Products->discription}}"   placeholder="enter  discription">
+                                value="{{ $products->discription}}"   placeholder="enter  discription">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="image">  your image</label>
                                 <input type="file" name="image" class="form-control" id="image"
-                                value="{{ $Products->image}}}"   placeholder="  enter image">
+                                value="{{ $products->image}}}"   placeholder="  enter image">
                             </div>
 
                             <div class="form-group col-md-4">
@@ -69,25 +69,25 @@
                                     id="categore_id" aria-label=".form-select-sm example">
                                     @foreach ($categores as $categore)
                                     <option value="{{ $categore->id }}">{{ $categore->name }}</option>
-                                
+
                                     @endforeach
                                 </select>
                             </div>
-                            
+
                             <div class="form-group col-md-4">
                                 <label for="seller_id"> seller</label>
                                 <select class="form-select form-select-sm" name="seller_id" style="width: 100%;"
                                     id="seller_id" aria-label=".form-select-sm example">
                                     @foreach ($sellers as $seller)
                                     <option value="{{ $seller->id }}">{{ $seller->name }}</option>
-                                
+
                                     @endforeach
                                 </select>
                             </div>
 
-                             
 
-                            
+
+
 
 
                         </div>
@@ -96,7 +96,7 @@
 
                       <!-- /.card-body -->
                       <div class="card-footer">
-                          <button type="button" onclick="performUpdate(id)" class="btn btn-lg btn-success">SAVE</button>
+                          <button type="button" onclick="performUpdate({{ $products->id }})" class="btn btn-lg btn-success">SAVE</button>
                          <a href="{{route('products.index')}}"><button type="button" class="btn btn-lg btn-primary">  index Products </button></a>
                       </div>
 
