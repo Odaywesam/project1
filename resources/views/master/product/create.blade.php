@@ -79,7 +79,7 @@
                                 <select class="form-select form-select-sm" name="seller_id" style="width:100%"
                                     id="seller_id" aria-label=".form-select-sm example">
                                     @foreach ($sellers as $seller)
-                                    <option value="{{ $seller->id }}">{{ $seller->name }}</option>
+                                    <option value="{{ $seller->id }}">{{ $seller->first_name . ' ' . $seller->last_name }}</option>
 
                                     @endforeach
                                 </select>

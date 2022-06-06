@@ -15,8 +15,8 @@ class UserAuthController extends Controller
 
 
     public function Login(Request $request){
-        $validate = Validator($request->all(),[
-            'email'=>'required|unique|email|string',
+        $validator = Validator($request->all(),[
+            'email'=>'required|email|string',
             'password'=>'required|string|min:6|max:16'
         ]);
 
