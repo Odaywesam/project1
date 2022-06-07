@@ -17,7 +17,7 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">edit roles</h3>
+                        <h3 class="card-title">index roles</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -29,19 +29,21 @@
 
 
                                 <div class="form-group col-md-4">
-                                    <label for="guard_name">نوع الدبلومة</label>
+                                    <label for="guard_name">type </label>
                                     <select class="form-select form-select-sm" name="guard_name" style="width: 100%;"
                                         id="guard_name" aria-label=".form-select-sm example">
-                                        <option value="admin" @if($roles->guard_name == 'admin') selected @endif>الأدمن</option>
-                                        <option value="web" @if($roles->guard_name == 'web') selected @endif>المستخدم</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="employee">employee</option>
+                                        <option value="seller">seller</option>
+                                        <option value="merchant">merchant</option>
 
                                     </select>
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    <label for="name">Role </label>
+                                    <label for="name">job name </label>
                                     <input type="text" name="name" class="form-control" id="name"
-                                       value="{{ $roles->name }}" placeholder="enter role">
+                                        placeholder="enter job name">
                                 </div>
 
 
@@ -51,9 +53,9 @@
 
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="button" onclick="performUpdate({{ $roles->id }})" class="btn btn-lg btn-success">update</button>
+                            <button type="button" onclick="performStore()" class="btn btn-lg btn-success">Save</button>
                             <a href="{{route('roles.index')}}"><button type="button" class="btn btn-lg btn-primary">
-                                     cancel </button></a>
+                                    Roles List</button></a>
                         </div>
 
                 </div>
@@ -82,14 +84,14 @@ $('.guard_name').select2({
     })
 
 
-    function performUpdate(id) {
+    function performStore() {
+
         let formData = new FormData();
-        formData.append('name', document.getElementById('name').value);
-        formData.append('guard_name', document.getElementById('guard_name').value);
+            formData.append('name',document.getElementById('name').value);
+            formData.append('guard_name',document.getElementById('guard_name').value);
 
-        storeRoute('/master/admin/update_roles/' + id, formData);
+        store('/master/admin/roles',formData);
     }
-
 
 </script>
 

@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -18,6 +19,9 @@ class AdminController extends Controller
     public function index()
     {
         $admins = Admin::orderBy('id' , 'desc')->paginate(5);
+        // start policy
+        $this->authorize('viewAny' , Admin::class);
+        //end policy
         return response()->view('master.admin.index', compact('admins'));
     }
 
@@ -29,8 +33,13 @@ class AdminController extends Controller
     public function create()
     {
         $cities = City::all();
+        //اعطيني الدور بناء على لما يكون القارد اسمو ادمن
+        $roles = Role::where('guard_name' , 'admin')->get();
 
-        return response()->view('master.admin.create' , compact('cities'));
+        // start policy
+        $this->authorize('create' , Admin::class);
+        //end policy
+        return response()->view('master.admin.create' , compact('cities','roles'));
     }
 
     /**
@@ -48,6 +57,9 @@ class AdminController extends Controller
 
         if(! $validator->fails()){
             $admins = new Admin();
+            $roles = Role::findOrFail($request->get('role_id'));
+            //الدالة جاية من  has roles in model for admin
+            $admins->assignRole($roles->name);
             $admins->first_name = $request->get('first_name');
             $admins->last_name = $request->get('last_name');
             $admins->mobile = $request->get('mobile');
@@ -116,6 +128,10 @@ class AdminController extends Controller
     public function edit($id)
     {
         $cities = City::all();
+
+         // start policy
+         $this->authorize('update' , Admin::class);
+         //end policy
         $admins = Admin::findOrFail($id);
         return response()->view('master.admin.edite' , compact('admins' , 'cities'));
 
@@ -191,6 +207,10 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $admins = Admin::destroy($id);
+         // start policy
+         
+         $this->authorize('delete' , Admin::class);
+         //end policy
         return response()->json(['icon' => 'success' , 'title' => 'deleted successflly'] ,$admins? 200 :400);
 
     }

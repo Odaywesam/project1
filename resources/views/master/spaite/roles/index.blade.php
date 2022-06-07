@@ -28,11 +28,11 @@
             <table class="table table-hover table-bordered table-striped text-nowrap text-center">
               <thead>
                 <tr class="bg-info">
-                  <th>Role Number </th>
-                  <th> Name Role </th>
-                  <th>   permisions </th>
-                  <th>  type  </th>
-                  <th> settting </th>
+                  <th>Role Number</th>
+                  <th>Name Role  </th>
+                  <th>permisions </th>
+                  <th>type       </th>
+                  <th>settting   </th>
                 </tr>
               </thead>
               <tbody>
@@ -42,7 +42,7 @@
                   <td>{{$role->name}}</td>
                   <td>
                     <a href="{{ route('role.permissions.index' , $role->id)}}"
-                      class="btn btn-primary"> permisions ({{ $role->permissions_count }})
+                      class="btn btn-primary"> permisions ({{ $role->permissions_count }}) 
                     </a>
                   </td>
                   <td><span class="badge bg-primary" >{{$role->guard_name}}</span></td>

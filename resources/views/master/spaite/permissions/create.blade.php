@@ -1,6 +1,6 @@
-@extends('dashboard.parent')
+@extends('master.parent')
 
-@section('title',' الصلاحيات')
+@section('title',' Permissions')
 
 @section('styles')
 
@@ -17,7 +17,7 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">تعديل بيانات الصلاحيات</h3>
+                        <h3 class="card-title">Index Permissions</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -30,19 +30,19 @@
 
 
                                 <div class="form-group col-md-4">
-                                    <label for="guard_name">نوع الوظيفي</label>
+                                    <label for="guard_name">job type </label>
                                     <select class="form-select form-select-sm" name="guard_name" style="width: 100%;"
                                         id="guard_name" aria-label=".form-select-sm example">
-                                        <option value="admin" @if($permissions->guard_name == 'admin') selected @endif>الأدمن</option>
-                                        <option value="web" @if($permissions->guard_name == 'web') selected @endif>المستخدم</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="employee">Employee</option>
 
                                     </select>
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    <label for="name">الصلاحية </label>
+                                    <label for="name"> permission </label>
                                     <input type="text" name="name" class="form-control" id="name"
-                                       value="{{ $permissions->name }}" placeholder="أدخل الصلاحية">
+                                        placeholder="أدخل الصلاحية ">
                                 </div>
 
 
@@ -52,9 +52,9 @@
 
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="button" onclick="performUpdate({{ $permissions->id }})" class="btn btn-lg btn-success">تعديل</button>
+                            <button type="button" onclick="performStore()" class="btn btn-lg btn-success">Save</button>
                             <a href="{{route('permissions.index')}}"><button type="button" class="btn btn-lg btn-primary">
-                                     إلغاء </button></a>
+                                permissions index </button></a>
                         </div>
                     </form>
                 </div>
@@ -83,14 +83,14 @@ $('.guard_name').select2({
     })
 
 
-    function performUpdate(id) {
+    function performStore() {
+
         let formData = new FormData();
-        formData.append('name', document.getElementById('name').value);
-        formData.append('guard_name', document.getElementById('guard_name').value);
-     
-        storeRoute('/cms/admin/update_permissions/'+id, formData);
+            formData.append('name',document.getElementById('name').value);
+            formData.append('guard_name',document.getElementById('guard_name').value);
+
+        store('/master/admin/permissions',formData);
     }
-    
 
 </script>
 

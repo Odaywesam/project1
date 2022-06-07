@@ -1,5 +1,5 @@
-@extends('dashboard.parent')
-@section('title','الصلاحيات ')
+@extends('master.parent')
+@section('title','Permission ')
 
 
 @section('styles')
@@ -13,12 +13,13 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
+
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title"> عرض الصلاحيات </h3>
+            <h3 class="card-title"> index permissions </h3>
             <div class="card-tools">
-                <a href="{{route('permissions.create')}}"><button type="button" class="btn btn-lg btn-primary">انشاء دور جديد </button></a>
+                <a href="{{route('permissions.create')}}"><button type="button" class="btn btn-lg btn-primary">create new permission </button></a>
               </div>
               <br>
             </div>
@@ -28,9 +29,9 @@
             <table class="table table-hover table-bordered table-striped text-nowrap text-center">
               <thead>
                 <tr class="bg-info">
-                  <th> رقم الدور </th>
-                  <th>  الاسم الوظيفي </th>
-                  <th>   النوع الوظيفي  </th>
+                  <th> role number </th>
+                  <th> job name </th>
+                  <th>  job type </th>
 
                   <th> الاعدادات </th>
                 </tr>
@@ -44,11 +45,11 @@
                   <td>
                     <div class="btn-group">
                       <a href="{{route('permissions.edit',$permission->id)}}" class="btn btn-info" title="Edit">
-                        تعديل
+                        Edit
                         </a>
 
                       <a href="#" onclick="performDestroy({{$permission->id}}, this)" class="btn btn-danger" title="Delete">
-                        حذف
+                        Delete
                       </a>
                     </div>
                   </td>
@@ -76,7 +77,7 @@
 
  <script>
   function performDestroy(id, reference){
-    let url = '/cms/admin/permissions/'+id;
+    let url = '/master/admin/permissions/'+id;
     confirmDestroy(url, reference);
   }
  </script>

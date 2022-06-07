@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
@@ -13,8 +14,9 @@ class RoleController extends Controller
      */
     public function index()
     {
+        //withCount عداد عشان يجيبلي عدد الصلاحيات مع اسم العلاقه
         $roles = Role::withCount('permissions')->orderBy('id' , 'desc')->Paginate(5);
-        return response()->view('master.spatie.roles.index' , compact('roles'));
+        return response()->view('master.spaite.roles.index' , compact('roles'));
     }
 
     /**
@@ -24,7 +26,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return response()->view('master.spatie.roles.create');
+        return response()->view('master.spaite.roles.create');
     }
 
     /**
@@ -35,7 +37,30 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator($request->all(),
+        [
+            'guard_name' => 'required|string|in:admin',
+            'name' => 'required|string'
+        ]);
+
+        if(! $validator->fails()){
+            $roles = new Role();
+            $roles->name = $request->get('name');
+            $roles->guard_name = $request->get('guard_name');
+            $isSaved = $roles->save();
+
+            if($isSaved){
+                return response()->json(['icon' => 'success' , 'title' => 'تمت الاضافة بنجاح'], 200);
+            }
+            else{
+                return response()->json(['icon' => 'error' , 'title' => 'فشلت عملية الاضافة '], 400);
+
+            }
+        }
+        else{
+            return response()->json(['icon' => 'error' , 'title' => $validator->getMessageBag()->first()] , 400);
+
+        }
     }
 
     /**
@@ -57,7 +82,8 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $roles = Role::findOrFail($id);
+        return response()->view('master.spaite.roles.edit' , compact('roles'));
     }
 
     /**
@@ -69,7 +95,31 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator($request->all(),
+        [
+            'guard_name' => 'required|string|in:admin',
+            'name' => 'required|string'
+        ]);
+
+        if(! $validator->fails()){
+            $roles = Role::findOrFail($id);
+            $roles->name = $request->get('name');
+            $roles->guard_name = $request->get('guard_name');
+            $isSaved = $roles->save();
+            return ['redirect' =>route('roles.index')];
+
+            if($isSaved){
+                return response()->json(['icon' => 'success' , 'title' => 'Updated successfully'], 200);
+            }
+            else{
+                return response()->json(['icon' => 'error' , 'title' => 'Updated failed'], 400);
+
+            }
+        }
+        else{
+            return response()->json(['icon' => 'error' , 'title' => $validator->getMessageBag()->first()] , 400);
+
+        }
     }
 
     /**
@@ -80,6 +130,8 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $roles = Role::destroy($id);
+        return response()->json(['icon' => 'success' , 'title' => 'Deleted successfully'], 200);
+
     }
 }

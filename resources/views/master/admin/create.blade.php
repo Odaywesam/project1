@@ -25,6 +25,21 @@
                       <div class="card-body">
 
                       <br>
+
+                      <div class="row">
+
+                        <div class="form-group col-md-4">
+                            <label for="role_id">job name </label>
+                            <select class="form-select form-select-sm" name="role_id" style="width: 100%;"
+                                id="role_id" aria-label=".form-select-sm example">
+                                @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                       <div class="row">
 
 
@@ -118,6 +133,7 @@
 
      function performStore() {
         let formData = new FormData();
+        formData.append('role_id',document.getElementById('role_id').value);
             formData.append('first_name',document.getElementById('first_name').value);
             formData.append('last_name',document.getElementById('last_name').value);
             formData.append('email',document.getElementById('email').value);

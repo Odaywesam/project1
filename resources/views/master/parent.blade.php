@@ -228,13 +228,13 @@
              </a>
              <ul class="nav nav-treeview">
                <li class="nav-item">
-                 <a href="{{ route('roles.index') }}" class="nav-link">
+                 <a href="{{ route('roles.index')}}" class="nav-link">
                      <i class="fas fa-desktop ml-2"></i>
                    <p>index roles</p>
                  </a>
                </li>
                <li class="nav-item">
-                 <a href="{{route('roles.create') }}" class="nav-link">
+                 <a href="{{route('roles.create')}}" class="nav-link">
                      <i class="fas fa-plus ml-2"></i>
                    <p>create new role</p>
                  </a>
@@ -253,7 +253,7 @@
              </a>
              <ul class="nav nav-treeview">
                <li class="nav-item">
-                 <a href="{{ route('permissions.index') }}" class="nav-link">
+                 <a href="{{ route('permissions.index')}}" class="nav-link">
                      <i class="fas fa-desktop ml-2"></i>
                    <p>  index permision</p>
                  </a>
@@ -271,6 +271,7 @@
           </li>
           <li class="nav-header">Human system</li>
 
+          {{-- @canany(['Cerate-Admin', 'Index-Admin']) --}}
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
@@ -280,6 +281,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+
               <li class="nav-item">
                 <a href="{{ route('admins.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -296,6 +298,8 @@
             </ul>
 
           </li>
+          {{-- @endcanany --}}
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
@@ -373,7 +377,8 @@
           </li>
 
           <li class="nav-header">management system</li>
-
+          {{-- اذا وحدة شغالة اظهرها اذا فش وقفهم  --}}
+          {{-- @canany(['Index-City', 'Create-City'])
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
@@ -382,6 +387,7 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ route('cities.index') }}" class="nav-link">
@@ -389,6 +395,53 @@
                   <p>Index</p>
                 </a>
               </li>
+              {{-- باخد نفس الاسم الي خزنتو في الداتا بيز عند الصلاحيات لمنع الصلاحية للصلاحية اواحدة --}}
+               {{-- @can("Create-City")
+            <li class="nav-item">
+                <a href="{{ route('cities.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Create</p>
+                </a>
+              </li>
+            @endcan --}}
+
+              <li class="nav-item">
+                <a href="{{ route('cities.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Create</p>
+                </a>
+              </li>
+
+            </ul>
+
+          </li>
+         {{-- endcanany --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-envelope"></i>
+              <p>
+                City
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('cities.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Index</p>
+                </a>
+              </li>
+              {{-- باخد نفس الاسم الي خزنتو في الداتا بيز عند الصلاحيات لمنع الصلاحية للصلاحية اواحدة --}}
+               {{-- @can("Create-City")
+            <li class="nav-item">
+                <a href="{{ route('cities.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Create</p>
+                </a>
+              </li>
+            @endcan --}}
+
               <li class="nav-item">
                 <a href="{{ route('cities.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

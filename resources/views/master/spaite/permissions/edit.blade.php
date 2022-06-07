@@ -1,6 +1,6 @@
 @extends('master.parent')
 
-@section('title',' Roles')
+@section('title',' permissions')
 
 @section('styles')
 
@@ -17,11 +17,12 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">index roles</h3>
+                        <h3 class="card-title">edit permission</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-
+                    <form id="create_form">
+                        @csrf
                         <div class="card-body">
 
                             <br>
@@ -29,21 +30,19 @@
 
 
                                 <div class="form-group col-md-4">
-                                    <label for="guard_name">type </label>
+                                    <label for="guard_name">job type</label>
                                     <select class="form-select form-select-sm" name="guard_name" style="width: 100%;"
                                         id="guard_name" aria-label=".form-select-sm example">
-                                        <option value="admin">Admin</option>
-                                        <option value="employee">employee</option>
-                                        <option value="seller">seller</option>
-                                        <option value="merchant">merchant</option>
+                                        <option value="admin" @if($permissions->guard_name == 'admin') selected @endif>Admin</option>
+                                        <option value="web" @if($permissions->guard_name == 'employee') selected @endif>Employee</option>
 
                                     </select>
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    <label for="name">job name </label>
+                                    <label for="name">permission </label>
                                     <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="enter job name">
+                                       value="{{ $permissions->name }}" placeholder="أدخل الصلاحية">
                                 </div>
 
 
@@ -53,11 +52,11 @@
 
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="button" onclick="performStore()" class="btn btn-lg btn-success">حفظ</button>
-                            <a href="{{route('roles.index')}}"><button type="button" class="btn btn-lg btn-primary">
-                                    Roles List</button></a>
+                            <button type="button" onclick="performUpdate({{ $permissions->id }})" class="btn btn-lg btn-success">تعديل</button>
+                            <a href="{{route('permissions.index')}}"><button type="button" class="btn btn-lg btn-primary">
+                                     cancel </button></a>
                         </div>
-
+                    </form>
                 </div>
                 <!-- /.card -->
             </div>
@@ -84,14 +83,14 @@ $('.guard_name').select2({
     })
 
 
-    function performStore() {
-
+    function performUpdate(id) {
         let formData = new FormData();
-            formData.append('name',document.getElementById('name').value);
-            formData.append('guard_name',document.getElementById('guard_name').value);
+        formData.append('name', document.getElementById('name').value);
+        formData.append('guard_name', document.getElementById('guard_name').value);
 
-        store('/master/admin/roles',formData);
+        storeRoute('/master/admin/update_permissions/'+id, formData);
     }
+
 
 </script>
 

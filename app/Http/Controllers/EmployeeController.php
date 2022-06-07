@@ -135,6 +135,9 @@ class EmployeeController extends Controller
 
         if(!$validator->fails()){
             $employees = Employee::findOrFail($id);
+            // $roles = Role::findOrFail($request->get('role_id'));
+            // //الدالة جاية من  has roles in model for admin
+            // $admins->assignRole($roles->name);
             $employees->email=$request->get('email');
             $employees->password= Hash::make($request->get('password'));
             $employees->city_id=$request->get('city_id');

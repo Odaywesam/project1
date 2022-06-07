@@ -30,8 +30,10 @@
               <thead>
                 <tr class="bg-info">
                   <th> Admain nimber  </th>
-                  <th>  first name  </th>
-                  <th>  last name </th>
+                  <th>  full name  </th>
+
+                  {{-- <th>  first name  </th>
+                  <th>  last name </th> --}}
                   <th>  email  </th>
                   <th>  mobile  </th>
                   <th>  age </th>
@@ -48,12 +50,14 @@
                   {{-- <td>
                     <img class="img-circle img-bordered-sm" src="{{asset('images/city_who/'.$city->image_who)}}" width="60" height="60" alt="User Image">
                   </td> --}}
-                  <td>{{$admin->first_name }}</td>
-                  <td>{{$admin->last_name }}</td>
+                  <td>{{$admin->first_name . ' ' . $admin->last_name}}</td>
+                  {{-- <td>{{$admin->last_name }}</td> --}}
                   <td>{{$admin->email}}</td>
                   <td>{{$admin->mobile}}</td>
                   <td>{{$admin->age}}</td>
-                  <td>{{$admin->image}}</td>
+                  <td>  <img class="img-circle img-bordered-sm" src="{{asset('/images/admin/'.$admin->image)}}" width="60" height="60" alt="User Image"> </td>
+
+                  {{-- <td>{{$admin->image}}</td> --}}
                   <td>
                     <div class="btn-group">
                       <a href="{{route('admins.edit',$admin->id)}}" class="btn btn-info" title="Edit">

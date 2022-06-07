@@ -11,6 +11,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RolePermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,20 +24,20 @@ use App\Http\Controllers\PermissionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 // ->middleware('guest:admin,employee,merchant,seller')
 Route::prefix('master/')->middleware('guest:admin')->group(function(){
     Route::get('{guard}/login', [UserAuthController::class ,'ShowLogin'])->name('view.login');
     Route::post('{guard}/login', [UserAuthController::class ,'Login']);
 });
 // ->middleware('auth:admin,employee,merchant,seller')
-Route::prefix('master/admin')->middleware('auth:admin')->group(function(){
+Route::prefix('master/admin')->group(function(){
     Route::get('/logout' , [UserAuthController::class , 'Logout'])->name('master.admin.logout');
 });
 // ->middleware('auth:admin,employee,merchant,seller')
-Route::prefix('master/admin/') ->middleware('auth:admin')->group(function(){
+Route::prefix('master/admin/')->group(function(){
     Route::view('parent' , 'master.parent');
     Route::resource('cities', CityController::class);
     Route::post('update_cities/{id}',[CityController::class ,'update'])->name('update_cities');
@@ -57,5 +58,6 @@ Route::prefix('master/admin/') ->middleware('auth:admin')->group(function(){
     Route::resource('permissions', PermissionController::class);
     Route::post('update_permissions/{id}' , [PermissionController::class , 'update'])->name('update_permissions');
     Route::resource('role.permissions', RolePermissionController::class);
+
 
 });
