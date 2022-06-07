@@ -108,7 +108,7 @@
       guard: guard
     })
         .then(function (response) {
-        window.location.href = '/master/admin/'
+        window.location.href = '/master/admin'
     })
         .catch(function (error) {
             if (error.response.data.errors !== undefined) {

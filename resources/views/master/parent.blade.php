@@ -523,7 +523,7 @@
             <a href="{{ route('master.admin.logout') }}" class="nav-link">
                 <i class="fas fa-sign-out-alt ml-2"></i>
                   <p>  Logout  </p>
-            </a>
+            </a> 
           </li>
 
 

@@ -40,6 +40,6 @@ class UserAuthController extends Controller
     public function Logout(Request $request){
         Auth::guard()->Logout();
         $request->session()->invalidate();
-        redirect()->route('view.login' , 'guard');
+        redirect()->route('view.login' , 'admin');  
     }
 }
