@@ -38,7 +38,7 @@ Route::prefix('master/admin')->group(function(){
 });
 // ->middleware('auth:admin,employee,merchant,seller')
 Route::prefix('master/admin/')->group(function(){
-    Route::view('parent' , 'master.parent');
+    Route::view('/' , 'master.parent');
     Route::resource('cities', CityController::class);
     Route::post('update_cities/{id}',[CityController::class ,'update'])->name('update_cities');
     Route::resource('categories', CategoreController::class);
