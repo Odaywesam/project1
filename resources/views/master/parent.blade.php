@@ -377,8 +377,7 @@
           </li>
 
           <li class="nav-header">management system</li>
-          {{-- اذا وحدة شغالة اظهرها اذا فش وقفهم  --}}
-          {{-- @canany(['Index-City', 'Create-City'])
+          
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
@@ -395,54 +394,7 @@
                   <p>Index</p>
                 </a>
               </li>
-              {{-- باخد نفس الاسم الي خزنتو في الداتا بيز عند الصلاحيات لمنع الصلاحية للصلاحية اواحدة --}}
-               {{-- @can("Create-City")
             <li class="nav-item">
-                <a href="{{ route('cities.create') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Create</p>
-                </a>
-              </li>
-            @endcan --}}
-
-              <li class="nav-item">
-                <a href="{{ route('cities.create') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Create</p>
-                </a>
-              </li>
-
-            </ul>
-
-          </li>
-         {{-- endcanany --}}
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
-                City
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('cities.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Index</p>
-                </a>
-              </li>
-              {{-- باخد نفس الاسم الي خزنتو في الداتا بيز عند الصلاحيات لمنع الصلاحية للصلاحية اواحدة --}}
-               {{-- @can("Create-City")
-            <li class="nav-item">
-                <a href="{{ route('cities.create') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Create</p>
-                </a>
-              </li>
-            @endcan --}}
-
-              <li class="nav-item">
                 <a href="{{ route('cities.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Create</p>
