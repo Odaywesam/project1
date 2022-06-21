@@ -62,6 +62,10 @@
                       <a href="#" onclick="performDestroy({{$merchant->id}}, this)" class="btn btn-danger" title="Delete">
                         Delete
                       </a>
+
+                      <a href="{{route('merchants.show',$merchant->id)}}" class="btn btn-success" title="Show">
+                        معلومات
+                      </a>
                     </div>
                   </td>
                 </tr>

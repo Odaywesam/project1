@@ -20,7 +20,7 @@ class AdminController extends Controller
     {
         $admins = Admin::orderBy('id' , 'desc')->paginate(5);
         // start policy
-        $this->authorize('viewAny' , Admin::class);
+        // $this->authorize('viewAny' , Admin::class);
         //end policy
         return response()->view('master.admin.index', compact('admins'));
     }
@@ -37,7 +37,7 @@ class AdminController extends Controller
         $roles = Role::where('guard_name' , 'admin')->get();
 
         // start policy
-        $this->authorize('create' , Admin::class);
+        // $this->authorize('create' , Admin::class);
         //end policy
         return response()->view('master.admin.create' , compact('cities','roles'));
     }
@@ -116,7 +116,9 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $admins = Admin::findOrFail($id);
+        $cities = City::all();
+        return response()->view('master.admin.show' , compact('admins' , 'cities'));
     }
 
     /**
@@ -130,7 +132,7 @@ class AdminController extends Controller
         $cities = City::all();
 
          // start policy
-         $this->authorize('update' , Admin::class);
+        //  $this->authorize('update' , Admin::class);
          //end policy
         $admins = Admin::findOrFail($id);
         return response()->view('master.admin.edite' , compact('admins' , 'cities'));

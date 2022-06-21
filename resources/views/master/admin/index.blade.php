@@ -67,6 +67,9 @@
                       <a href="#" onclick="performDestroy({{$admin->id}}, this)" class="btn btn-danger" title="Delete">
                         Delete
                       </a>
+                      <a href="{{route('admins.show',$admin->id)}}" class="btn btn-success" title="Show">
+                        معلومات
+                      </a>
                     </div>
                   </td>
                 </tr>

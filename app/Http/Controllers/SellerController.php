@@ -104,7 +104,9 @@ class SellerController extends Controller
      */
     public function show($id)
     {
-        //
+        $sellers = Seller::findOrFail($id);
+        $cities = City::all();
+        return response()->view('master.seller.show' , compact('sellers' , 'cities'));
     }
 
     /**

@@ -105,7 +105,9 @@ class MerchantController extends Controller
      */
     public function show($id)
     {
-        //
+        $merchants = Merchant::findOrFail($id);
+        $cities = City::all();
+        return response()->view('master.merchant.show' , compact('merchants' , 'cities'));
     }
 
     /**

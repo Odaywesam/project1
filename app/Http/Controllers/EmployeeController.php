@@ -7,6 +7,7 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Contracts\Role;
 
 class EmployeeController extends Controller
 {
@@ -104,7 +105,9 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        $employees = Employee::findOrFail($id);
+        $cities = City::all();
+        return response()->view('master.employee.show' , compact('employees' , 'cities'));
     }
 
     /**
